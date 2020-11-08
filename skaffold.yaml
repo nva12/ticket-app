@@ -7,7 +7,10 @@ deploy:
 build:
   local:
     push: false
+  # googleCloudBuild:
+  #   projectId: ticket-app-294907
   artifacts:
+    # - image: us.gcr.io/ticket-app-294907/auth
     - image: nvallee/auth
       context: auth
       docker:

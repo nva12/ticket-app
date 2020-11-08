@@ -15,6 +15,7 @@ spec:
       containers:
         - name: auth
           image: nvallee/auth
+          # image: us.gcr.io/ticket-app-294907/auth
 ---
 apiVersion: v1
 kind: Service
