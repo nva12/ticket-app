@@ -53,7 +53,8 @@ router.post(
     // publish an event saying an order was created
     new OrderCreatedPublisher(natsWrapper.client).publish({
       id: order.id,
-      // status: order.status,
+      version: order.version,
+      // status: order.status, /* I don't understand why TS would throw an error here, hence the fix below */
       status: OrderStatus.Created,
       userId: order.userId,
       expiresAt: order.expiresAt.toISOString(),
