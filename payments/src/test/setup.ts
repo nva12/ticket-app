@@ -12,6 +12,8 @@ declare global {
 
 jest.mock('../nats-wrapper.ts');
 
+require('dotenv').config();
+
 let mongo: any;
 
 beforeAll(async () => {
