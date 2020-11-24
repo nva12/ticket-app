@@ -1,4 +1,6 @@
 import Link from 'next/link';
+import { Header as ArwesHeader, Link as ArwesLink, Logo } from 'arwes';
+import ContentContainer from './ContentContainer';
 
 const Header = ({ currentUser }) => {
   const links = [
@@ -11,24 +13,45 @@ const Header = ({ currentUser }) => {
     .filter((linkConfig) => linkConfig)
     .map(({ label, href }) => {
       return (
-        <li key={href} className='nav-item'>
+        <li key={href} style={{ marginLeft: '1.5rem' }}>
           <Link href={href}>
-            <a className='nav-link'>{label}</a>
+            <ArwesLink>{label}</ArwesLink>
           </Link>
         </li>
       );
     });
 
   return (
-    <nav className='navbar navbar-light bg-light'>
-      <Link href='/'>
-        <a className='navbar-brand'>GitTix</a>
-      </Link>
+    <ArwesHeader animate>
+      <ContentContainer>
+        <nav
+          style={{
+            display: 'flex',
+            justifyContent: 'space-between',
+            alignItems: 'center',
+          }}
+        >
+          <Link href='/'>
+            <ArwesLink style={{ display: 'flex', alignItems: 'center' }}>
+              <Logo animate size={60} style={{ marginRight: '1.5rem' }} />
+              <h1>GalakTix</h1>
+            </ArwesLink>
+          </Link>
 
-      <div className='d-flex justify-content-end'>
-        <ul className='nav d-flex align-items-center'>{links}</ul>
-      </div>
-    </nav>
+          <div style={{ display: 'flex', justifyContent: 'flex-end' }}>
+            <ul
+              style={{
+                listStyle: 'none',
+                display: 'flex',
+                alignItems: 'center',
+              }}
+            >
+              {links}
+            </ul>
+          </div>
+        </nav>
+      </ContentContainer>
+    </ArwesHeader>
   );
 };
 

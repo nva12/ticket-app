@@ -1,34 +1,47 @@
-import Link from 'next/link';
+import StyledCard from '../components/StyledCard';
+import { Content, Words } from 'arwes';
 
 const LandingPage = ({ currentUser, tickets }) => {
   const ticketList = tickets.map((ticket) => {
     return (
-      <tr key={ticket.id}>
-        <td>{ticket.title}</td>
-        <td>{ticket.price}</td>
-        <td>
-          <Link href='/tickets/[ticketId]' as={`/tickets/${ticket.id}`}>
-            <a>View</a>
-          </Link>
-        </td>
-      </tr>
+      <StyledCard
+        key={ticket.id}
+        title={ticket.title}
+        price={ticket.price}
+        ticketId={ticket.id}
+      />
     );
   });
 
   return (
-    <div>
-      <h1>
-        <table className='table'>
-          <thead>
-            <tr>
-              <th>Title</th>
-              <th>Price</th>
-              <th>Link</th>
-            </tr>
-          </thead>
-          <tbody>{ticketList}</tbody>
-        </table>
-      </h1>
+    <div style={{ marginTop: '2rem' }}>
+      <Content>
+        <h1>Welcome to GalakTix</h1>
+        <p>
+          <Words animate>
+            The only website to buy, exchange, and resell your tickets to any
+            intergalactic event!
+          </Words>
+        </p>
+        <h3>Browse available items:</h3>
+      </Content>
+      <div className='grid-container'>
+        {ticketList}
+        <StyledCard title='Concert' price='20' ticketId='qwerty123' />
+        <StyledCard title='Game' price='50' ticketId='qjcjkdbvjfdbvbkv' />
+        <StyledCard title='Concert' price='20' ticketId='qwerty123' />
+        <StyledCard title='Game' price='50' ticketId='qjcjkdbvjfdbvbkv' />
+      </div>
+      <style jsx>
+        {`
+          .grid-container {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 2rem 3rem;
+            margin: 3rem 0;
+          }
+        `}
+      </style>
     </div>
   );
 };

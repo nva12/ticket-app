@@ -10,8 +10,8 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
+    "arwes": "^1.0.0-alpha.5",
     "axios": "^0.21.0",
-    "bootstrap": "^4.5.3",
     "next": "^10.0.1",
     "react": "^17.0.1",
     "react-dom": "^17.0.1",
