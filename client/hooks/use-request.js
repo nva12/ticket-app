@@ -1,5 +1,6 @@
 import axios from 'axios';
 import { useState } from 'react';
+import ErrorAlert from '../components/ErrorAlert';
 
 const useRequest = ({ url, method, body, onSuccess }) => {
   const [errors, setErrors] = useState(null);
@@ -19,13 +20,11 @@ const useRequest = ({ url, method, body, onSuccess }) => {
       return response.data;
     } catch (err) {
       setErrors(
-        <div className='alert alert-danger'>
-          <ul className='my-0'>
-            {err.response.data.errors.map((err) => (
-              <li key={err.message}>{err.message}</li>
-            ))}
-          </ul>
-        </div>
+        <ErrorAlert>
+          {err.response.data.errors.map((err) => (
+            <li key={err.message}>{err.message}</li>
+          ))}
+        </ErrorAlert>
       );
     }
   };

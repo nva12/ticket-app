@@ -1,6 +1,10 @@
 import { useState } from 'react';
 import { useRouter } from 'next/router';
 import useRequest from '../../hooks/use-request';
+import { Button, Heading, Words } from 'arwes';
+import StyledInputField from '../../components/StyledInputField';
+import StyledInputGroup from '../../components/StyledInputGroup';
+import StyledForm from '../../components/StyledForm';
 
 const NewTicket = () => {
   const router = useRouter();
@@ -32,30 +36,48 @@ const NewTicket = () => {
   };
 
   return (
-    <div>
-      <h1>Create a ticket</h1>
-      <form onSubmit={onSubmit}>
-        <div className='form-group'>
-          <label>Title</label>
-          <input
-            className='form-control'
-            value={title}
-            onChange={(e) => setTitle(e.target.value)}
-          />
-        </div>
-        <div className='form-group'>
-          <label>Price</label>
-          <input
-            className='form-control'
-            value={price}
-            onChange={(e) => setPrice(e.target.value)}
-            onBlur={onBlur}
-          />
-        </div>
-        {errors}
-        <button className='btn btn-primary'>Submit</button>
-      </form>
-    </div>
+    <StyledForm onSubmit={onSubmit}>
+      <Heading node='h1'>Create a ticket</Heading>
+      <StyledInputGroup>
+        <label htmlFor='title'>Title</label>
+        <StyledInputField
+          id='title'
+          value={title}
+          type='text'
+          required
+          onChange={(e) => setTitle(e.target.value)}
+        />
+      </StyledInputGroup>
+      <StyledInputGroup>
+        <label htmlFor='price'>Price</label>
+        <input
+          className='inputWithBlurMethod'
+          id='price'
+          value={price}
+          onChange={(e) => setPrice(e.target.value)}
+          type='text'
+          required
+          onBlur={onBlur}
+        />
+      </StyledInputGroup>
+      {errors}
+      <Button animate>Submit</Button>
+      <style jsx>{`
+        .inputWithBlurMethod {
+          background: transparent;
+          border: none;
+          border-bottom: solid 1px #26dafd;
+          padding: 0.5rem 2rem;
+          color: #26dafd;
+          font-family: inherit;
+          font-size: 1.25rem;
+          outline: none;
+        }
+        input:focus {
+          background: rgba(255, 255, 255, 0.2);
+        }
+      `}</style>
+    </StyledForm>
   );
 };
 

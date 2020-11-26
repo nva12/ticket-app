@@ -1,34 +1,47 @@
-import Link from 'next/link';
+import StyledCard from '../components/StyledCard';
+import { Content, Words } from 'arwes';
 
 const LandingPage = ({ currentUser, tickets }) => {
-  const ticketList = tickets.map((ticket) => {
+  const ticketList = tickets.reverse().map((ticket) => {
     return (
-      <tr key={ticket.id}>
-        <td>{ticket.title}</td>
-        <td>{ticket.price}</td>
-        <td>
-          <Link href='/tickets/[ticketId]' as={`/tickets/${ticket.id}`}>
-            <a>View</a>
-          </Link>
-        </td>
-      </tr>
+      <StyledCard
+        key={ticket.id}
+        title={ticket.title}
+        price={ticket.price}
+        ticketId={ticket.id}
+      />
     );
   });
 
   return (
-    <div>
-      <h1>
-        <table className='table'>
-          <thead>
-            <tr>
-              <th>Title</th>
-              <th>Price</th>
-              <th>Link</th>
-            </tr>
-          </thead>
-          <tbody>{ticketList}</tbody>
-        </table>
-      </h1>
+    <div style={{ marginTop: '2rem' }}>
+      <Content>
+        <h1>Welcome to GalakTix</h1>
+        <p>
+          <Words animate>
+            The only website to buy, exchange, and resell your tickets to any
+            intergalactic event!
+          </Words>
+        </p>
+        <h3>Browse available items:</h3>
+      </Content>
+      <div className='tickets-container'>{ticketList}</div>
+      <style jsx>
+        {`
+          .tickets-container {
+            display: grid;
+            grid-template-columns: 1fr;
+            row-gap: 2rem;
+            margin: 3rem 0;
+          }
+          @media (min-width: 760px) {
+            .tickets-container {
+              grid-template-columns: 1fr 1fr;
+              gap: 3rem 3rem;
+            }
+          }
+        `}
+      </style>
     </div>
   );
 };

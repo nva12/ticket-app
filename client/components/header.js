@@ -1,4 +1,6 @@
 import Link from 'next/link';
+import { Header as ArwesHeader, Link as ArwesLink, Logo } from 'arwes';
+import ContentContainer from './ContentContainer';
 
 const Header = ({ currentUser }) => {
   const links = [
@@ -11,24 +13,63 @@ const Header = ({ currentUser }) => {
     .filter((linkConfig) => linkConfig)
     .map(({ label, href }) => {
       return (
-        <li key={href} className='nav-item'>
+        <li key={href} style={{ marginLeft: '1.5rem' }}>
           <Link href={href}>
-            <a className='nav-link'>{label}</a>
+            <ArwesLink>{label}</ArwesLink>
           </Link>
         </li>
       );
     });
 
   return (
-    <nav className='navbar navbar-light bg-light'>
-      <Link href='/'>
-        <a className='navbar-brand'>GitTix</a>
-      </Link>
+    <ArwesHeader animate>
+      <ContentContainer>
+        <nav className='navbar'>
+          <Link href='/'>
+            <ArwesLink
+              style={{
+                display: 'flex',
+                alignItems: 'center',
+                alignSelf: 'center',
+              }}
+            >
+              <Logo animate size={60} style={{ marginRight: '1.5rem' }} />
+              <h1>GalakTix</h1>
+            </ArwesLink>
+          </Link>
 
-      <div className='d-flex justify-content-end'>
-        <ul className='nav d-flex align-items-center'>{links}</ul>
-      </div>
-    </nav>
+          <div style={{ display: 'flex', justifyContent: 'flex-end' }}>
+            <ul className='links-list'>{links}</ul>
+          </div>
+        </nav>
+      </ContentContainer>
+      <style jsx>
+        {`
+          .navbar {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+          }
+          .links-list {
+            list-style: none;
+            display: flex;
+            align-items: center;
+            margin-top: 0;
+            margin-left: -1.5rem;
+          }
+          @media (min-width: 640px) {
+            .navbar {
+              flex-direction: row;
+              justify-content: space-between;
+            }
+            .links-list {
+              margin-top: 21px;
+              margin-left: 0;
+            }
+          }
+        `}
+      </style>
+    </ArwesHeader>
   );
 };
 

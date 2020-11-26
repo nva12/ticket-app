@@ -1,6 +1,10 @@
 import { useState } from 'react';
 import { useRouter } from 'next/router';
 import useRequest from '../../hooks/use-request';
+import { Button, Heading, Words } from 'arwes';
+import StyledInputField from '../../components/StyledInputField';
+import StyledInputGroup from '../../components/StyledInputGroup';
+import StyledForm from '../../components/StyledForm';
 
 const SignUp = () => {
   const router = useRouter();
@@ -23,28 +27,34 @@ const SignUp = () => {
   };
 
   return (
-    <form onSubmit={onSubmit}>
-      <h1>Sign Up</h1>
-      <div className='form-group'>
-        <label>Email address</label>
-        <input
+    <StyledForm onSubmit={onSubmit}>
+      <Heading node='h1'>Sign Up</Heading>
+      <p>
+        <Words animate>Create your GalakTix account now:</Words>
+      </p>
+      <StyledInputGroup>
+        <label htmlFor='email'>Email:</label>
+        <StyledInputField
+          type='text'
+          id='email'
           value={email}
           onChange={(e) => setEmail(e.target.value)}
-          className='form-control'
+          required
         />
-      </div>
-      <div className='form-group'>
-        <label>Password</label>
-        <input
+      </StyledInputGroup>
+      <StyledInputGroup>
+        <label htmlFor='password'>Password:</label>
+        <StyledInputField
+          id='password'
           value={password}
           onChange={(e) => setPassword(e.target.value)}
           type='password'
-          className='form-control'
+          required
         />
-      </div>
+      </StyledInputGroup>
       {errors}
-      <button className='btn btn-primary'>Sign Up</button>
-    </form>
+      <Button animate>Sign Up</Button>
+    </StyledForm>
   );
 };
 
