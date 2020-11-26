@@ -1,7 +1,13 @@
-const StyledInputField = () => {
+const StyledInputField = ({ type, id, value, onChange, required }) => {
   return (
     <>
-      <input />
+      <input
+        type={type}
+        value={value}
+        id={id}
+        onChange={onChange}
+        required={required}
+      />
       <style jsx>{`
         input {
           background: transparent;

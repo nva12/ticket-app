@@ -1,5 +1,6 @@
 import useRequest from '../../hooks/use-request';
 import { useRouter } from 'next/router';
+import { Button, Frame, Content } from 'arwes';
 
 const TicketShow = ({ ticket }) => {
   const router = useRouter();
@@ -15,14 +16,30 @@ const TicketShow = ({ ticket }) => {
   });
 
   return (
-    <div>
-      <h1>{ticket.title}</h1>
-      <h4>Price: {ticket.price}</h4>
-      {errors}
-      <button onClick={() => doRequest()} className='btn btn-primary'>
-        Purchase
-      </button>
-    </div>
+    <Frame
+      animate={true}
+      level={3}
+      corners={6}
+      style={{ margin: '2rem auto', maxWidth: '600px' }}
+    >
+      <div className='container'>
+        <Content>
+          <h3>{ticket.title}</h3>
+          <p>Price: &#8382;{ticket.price}</p>
+          {errors}
+          <Button onClick={() => doRequest()} animate layer='success'>
+            Purchase
+          </Button>
+        </Content>
+      </div>
+      <style jsx>
+        {`
+          .container {
+            padding: 1rem;
+          }
+        `}
+      </style>
+    </Frame>
   );
 };
 

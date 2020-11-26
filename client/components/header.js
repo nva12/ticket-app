@@ -24,33 +24,51 @@ const Header = ({ currentUser }) => {
   return (
     <ArwesHeader animate>
       <ContentContainer>
-        <nav
-          style={{
-            display: 'flex',
-            justifyContent: 'space-between',
-            alignItems: 'center',
-          }}
-        >
+        <nav className='navbar'>
           <Link href='/'>
-            <ArwesLink style={{ display: 'flex', alignItems: 'center' }}>
+            <ArwesLink
+              style={{
+                display: 'flex',
+                alignItems: 'center',
+                alignSelf: 'center',
+              }}
+            >
               <Logo animate size={60} style={{ marginRight: '1.5rem' }} />
               <h1>GalakTix</h1>
             </ArwesLink>
           </Link>
 
           <div style={{ display: 'flex', justifyContent: 'flex-end' }}>
-            <ul
-              style={{
-                listStyle: 'none',
-                display: 'flex',
-                alignItems: 'center',
-              }}
-            >
-              {links}
-            </ul>
+            <ul className='links-list'>{links}</ul>
           </div>
         </nav>
       </ContentContainer>
+      <style jsx>
+        {`
+          .navbar {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+          }
+          .links-list {
+            list-style: none;
+            display: flex;
+            align-items: center;
+            margin-top: 0;
+            margin-left: -1.5rem;
+          }
+          @media (min-width: 640px) {
+            .navbar {
+              flex-direction: row;
+              justify-content: space-between;
+            }
+            .links-list {
+              margin-top: 21px;
+              margin-left: 0;
+            }
+          }
+        `}
+      </style>
     </ArwesHeader>
   );
 };

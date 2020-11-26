@@ -8,7 +8,7 @@ const StyledCard = ({ title, price, ticketId }) => {
         <div className='container'>
           <Content>
             <h3>{title}</h3>
-            <p>Price: ${price}</p>
+            <p>Price: &#8382;{price}</p>
             <Link href='/tickets/[ticketId]' as={`/tickets/${ticketId}`}>
               <Button>View</Button>
             </Link>

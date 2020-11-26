@@ -33,18 +33,23 @@ const SignIn = () => {
         <Words animate>Login with your GalakTix account credentials:</Words>
       </p>
       <StyledInputGroup>
-        <label>Email address</label>
+        <label htmlFor='email'>Email address</label>
         <StyledInputField
+          type='text'
+          id='email'
           value={email}
           onChange={(e) => setEmail(e.target.value)}
+          required
         />
       </StyledInputGroup>
       <StyledInputGroup>
-        <label>Password</label>
+        <label htmlFor='password'>Password</label>
         <StyledInputField
           value={password}
+          id='password'
           onChange={(e) => setPassword(e.target.value)}
           type='password'
+          required
         />
       </StyledInputGroup>
       {errors}

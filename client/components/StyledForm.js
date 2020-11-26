@@ -1,7 +1,7 @@
-const StyledForm = ({ children }) => {
+const StyledForm = ({ children, onSubmit }) => {
   return (
     <>
-      <form>{children}</form>
+      <form onSubmit={onSubmit}>{children}</form>
       <style jsx>{`
         form {
           max-width: 600px;

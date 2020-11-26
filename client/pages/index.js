@@ -2,7 +2,7 @@ import StyledCard from '../components/StyledCard';
 import { Content, Words } from 'arwes';
 
 const LandingPage = ({ currentUser, tickets }) => {
-  const ticketList = tickets.map((ticket) => {
+  const ticketList = tickets.reverse().map((ticket) => {
     return (
       <StyledCard
         key={ticket.id}
@@ -25,20 +25,20 @@ const LandingPage = ({ currentUser, tickets }) => {
         </p>
         <h3>Browse available items:</h3>
       </Content>
-      <div className='grid-container'>
-        {ticketList}
-        <StyledCard title='Concert' price='20' ticketId='qwerty123' />
-        <StyledCard title='Game' price='50' ticketId='qjcjkdbvjfdbvbkv' />
-        <StyledCard title='Concert' price='20' ticketId='qwerty123' />
-        <StyledCard title='Game' price='50' ticketId='qjcjkdbvjfdbvbkv' />
-      </div>
+      <div className='tickets-container'>{ticketList}</div>
       <style jsx>
         {`
-          .grid-container {
+          .tickets-container {
             display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 2rem 3rem;
+            grid-template-columns: 1fr;
+            row-gap: 2rem;
             margin: 3rem 0;
+          }
+          @media (min-width: 760px) {
+            .tickets-container {
+              grid-template-columns: 1fr 1fr;
+              gap: 3rem 3rem;
+            }
           }
         `}
       </style>
